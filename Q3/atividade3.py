@@ -2,15 +2,10 @@ import sys
 from arvore import lerArvore, isEmpty, inserirFronteira, No, printCaminho
 
 nosLista = lerArvore()
-
-if(sys.argv.__len__() > 2 and sys.argv[1] != '>'):
-    noInicial = next(no for no in nosLista if no.nome == sys.argv[1])
-    noObjetivo = next(no for no in nosLista if no.nome == sys.argv[2])
-else:
-    raise "Infome a cidade inicial e a final na chamada do script!"
-
-print("Cidade partida:", noInicial.nome)
-print("Cidade destino:", noObjetivo.nome)
+origem = input("Qual a sua cidade de partida?   ")
+destino = input("Qual a sua cidade destino?   ")
+noInicial = next(no for no in nosLista if no.nome == origem)
+noObjetivo = next(no for no in nosLista if no.nome == destino)
 print()
 
 noInicial.custo = 0
