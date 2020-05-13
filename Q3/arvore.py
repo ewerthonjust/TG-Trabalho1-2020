@@ -1,15 +1,12 @@
 import csv
 
-
 def isEmpty(collection):
     return collection == None or collection.__len__() == 0
-
 
 def converterDistancia(string):
     if string is '':
         return None
     return int(string)
-
 
 def getFilhos(distanciasLista):
     filhos = []
@@ -21,20 +18,19 @@ def getFilhos(distanciasLista):
         
     return filhos
 
-
-def inserirFronteira(novaCidade, filho, fronteira):
-    novaCidade.filho = filho
-    novaCidade.custo = novaCidade.custoParente(filho)
+def inserirFronteira(novoNo, filho, fronteira):
+    novoNo.filho = filho
+    novoNo.custo = novoNo.custoParente(filho)
     print()
-    print("- Pai:", novaCidade.filho.nome)
-    print("- Custo atual:", novaCidade.custo)
-    print("- Custo por estimativa:", novaCidade.calculaCustoEstimativa())
+    print("- Pai:", novoNo.filho.nome)
+    print("- Custo atual:", novoNo.custo)
+    print("- Custo por estimativa:", novoNo.calculaCustoEstimativa())
     for no in fronteira:
         # Mantem as fronteiras com a melhor opção no final
-        if(no.calculaCustoEstimativa() <= novaCidade.calculaCustoEstimativa()):
-            fronteira.insert(fronteira.index(no), novaCidade)
+        if(no.calculaCustoEstimativa() <= novoNo.calculaCustoEstimativa()):
+            fronteira.insert(fronteira.index(no), novoNo)
             return
-    fronteira.append(novaCidade)
+    fronteira.append(novoNo)
 
 
 class No:
@@ -50,9 +46,6 @@ class No:
         self.filhos = getFilhos(self.distanciasLista)
         self.distanciaReta = distanciaReta
 
-    #def hasPathTo(self, nodeId):
-    #    return self.distanciasLista[nodeId] != None
-
     def distancia(self, no):
         return self.distanciasLista[no.id]
 
@@ -65,17 +58,15 @@ class No:
     def custoParente(self, filho):
         return filho.custo + filho.distancia(self)
 
-
 def printCaminho(no):
     if(no.filho is None):
         return no.nome
     return f'{printCaminho(no.filho)} -> {no.nome}'
 
-
 def lerArvore():
 
     nosLista = []
-    nCidades = 0
+    nNos = 0
 
     with open('arvore.csv') as arvore:
         csvReader = csv.reader(arvore, delimiter=',')
@@ -86,12 +77,12 @@ def lerArvore():
                 linha.remove(linha[0])
                 print(f'{tipoBusca}: {", ".join(linha)}')
             else:
-                nomeCidade = linha[0]
+                nomeNo = linha[0]
                 linha.remove(linha[0])
-                nosLista.append(No(nLinhas - 1, nomeCidade,  linha))
+                nosLista.append(No(nLinhas - 1, nomeNo,  linha))
             nLinhas += 1
-        nCidades = nLinhas - 1
-        print(f'Numero total de cidades: {nCidades}')
+        nNos = nLinhas - 1
+        print(f'Numero total de {tipoBusca}: {nNos}')
         print()
         arvore.close
 
@@ -99,8 +90,8 @@ def lerArvore():
         csvReader = csv.reader(distanciaReta, delimiter=',')
         nLinhas = 0
         for linha in csvReader:
-            if(nLinhas > nCidades):
-                raise "Número de distância em reta diferente do número de cidades!"
+            if(nLinhas > nNos):
+                raise "Quantidade de distâncias em linha reta diferente do número de {tipoBusca}!"
             nosLista[nLinhas].distanciaReta = int(linha[1])
             nLinhas += 1
         distanciaReta.close

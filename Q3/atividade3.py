@@ -54,7 +54,7 @@ while(True):
             inserirFronteira(filho, noAtual, fronteira)
             print()
         else:
-            print("- Cidade", filho.nome, "já explorado.")
+            print("- Cidade", filho.nome, "já explorada.")
             print()
 
     print("Nova expanção:", list(map(No.getNome, fronteira)))
