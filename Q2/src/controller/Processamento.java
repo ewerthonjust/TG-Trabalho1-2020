@@ -4,9 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-/**
- * @author Diego Arndt & Ewerthon Ricardo Just
- */
+//@authors Diego Arndt & Ewerthon Ricardo Just
 public class Processamento {
     protected String calcularGraus(int[][] matriz) {
         boolean eDigrafo = eDigrafo(matriz);

@@ -8,6 +8,8 @@ import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import controller.Processamento;
+
 //@authors Diego Arndt & Ewerthon Ricardo Just
 public class Grafo {
 	public static void main(String[] args) {
