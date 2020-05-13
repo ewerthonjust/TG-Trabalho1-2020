@@ -13,7 +13,7 @@ import controller.Processamento;
 //@authors Diego Arndt & Ewerthon Ricardo Just
 public class Grafo {
 	public static void main(String[] args) {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/teste3.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/teste4.txt"))) {
             Processamento p = new Processamento();
             String l = br.readLine();
             while (l != null && !l.equals("0")) {
@@ -83,8 +83,9 @@ public class Grafo {
                     out.append(result+"\n"+resultBuscas+"\r\n_________________________________\n\n");
                     out.close();
                     System.out.println("\n________________________________________________________________________\n"
-                            + "As informações deste processamento foram salvas no\nseguinte arquivo: src/grafos_infos.txt\n");
-                    
+                    		+ "\nMemória utilizada: " + p.calcMem() + "Mb\nTempo necessário: " + p.getTime());
+                    System.out.println("\n________________________________________________________________________\n"
+                            + "\nAs informações deste processamento foram salvas no\nseguinte arquivo: src/grafos_infos.txt\n");
                 } else 
                     System.out.println("Opção inválida");
             }

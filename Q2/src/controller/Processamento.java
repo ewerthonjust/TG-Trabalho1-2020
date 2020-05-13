@@ -1,11 +1,16 @@
 package controller;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.concurrent.TimeUnit;
 
 //@authors Diego Arndt & Ewerthon Ricardo Just
-public class Processamento {
+public class Processamento { 
+	private Duration t;  
+
     protected String calcularGraus(int[][] matriz) {
         boolean eDigrafo = eDigrafo(matriz);
         StringBuilder res = new StringBuilder();
@@ -62,6 +67,7 @@ public class Processamento {
     }
     
     protected String buscarModoLargura(LinkedList<Integer>[] listAdj, Integer origem, Integer qtdVert) {
+    	LocalDateTime antes = LocalDateTime.now(); 
         int[] pais = new int[qtdVert];
         int[] dist = new int[qtdVert];
         Cor[] cores = new Cor[qtdVert];
@@ -93,6 +99,8 @@ public class Processamento {
             l2 += dist[i] + esp + "|" + esp;
             l3 += pais[i] + esp + "|" + esp;
         }
+        LocalDateTime depois = LocalDateTime.now(); 
+        t = Duration.between(depois, antes);
         return l1 + "\r\n" + l2 + "\r\n" + (l3.replace("0", "-"));
     }
     
@@ -121,6 +129,19 @@ public class Processamento {
             System.out.println("");
         }
     }
+    
+    protected long calcMem() {
+        return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024L*1024L);
+	}
+    
+    protected String getTime() {
+    	long millis = t.toMillis();
+		return (String.format("%02d:%02d:%02d", 
+		        TimeUnit.MILLISECONDS.toHours(millis),
+		        TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
+		        TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))
+				));
+	}
     
     private boolean eDigrafo(int[][] m) {
         for (int i = 0; i < m.length; i++) {
@@ -175,8 +196,8 @@ public class Processamento {
         }
         return arr;
     }
-    
-    private enum Cor {
+
+	private enum Cor {
         CINZA, PRETO, BRANCO;
     }
 }
