@@ -4,4 +4,4 @@ Justificativa Q2;
 
 Conforme discutimos em sala de aula hoje, a implementação desta questão em java se torna inviável pelo fato da linguagem utilizar muito recurso de memória.Para fins de teste dedicamos 4 GB de memória para o JVM passando o argumento -Xmx4096m no eclipse e ainda assim processando uma busca BFS no arquivo teste 1, que contem 32385 vértices, a execução ultrapassou 1 hora de duração.
 
-Com isso concluímos que Java não serve para processamento de Grafos.
+Com isso concluímos que Java passa longe de ser uma linguagem apropriada para o processamento de buscas em Grafos.
