@@ -1,0 +1,49 @@
+QUESTÃO1(1,0 ponto)
+Explique rapidamente cada uma das estratégias abaixo, destacandoa escolha do vérticeda fronteira, como elase comporta e qual é odesempenho do algoritmo ao realizar a busca por um objetivo:
+
+a.Busca em profundidade
+
+A busca DFS tem como objetivo visitar todos os vértices, numerando-os na ordem que eles vão sendo descobertos. O algoritmo cria uma pilha (FILO, o primeiro a entrar é o último a sair) e depois vai desempilhando.
+Quando o grafo é conexo, a busca simplesmente explora os vértices até o fim, caso tenham ficado alguns para trás, a busca faz o chamado "backtrack", até que todos sejam encontrados, finaliznado assim a busca.
+Já quando o grafo é desconexo, a busca recomeça por um novo vértice que ainda não foi descoberto. Um fato interessante é que não muda, caso o grafo seja dirigido ou não.
+A função pode ser iniciada por qualquer vértice, mas normalmente inicia-se pelo vértice 0 ou A. 
+Se o grafo for representado por uma lista de adjacências, a DFS tem complexidade O(n + m). Sendo assim, o desempenho depende da quantidade de vértices e arestas que o grafo possui, ou seja, no pior caso ele é linear.
+
+------------------------------------
+b.Busca em largura (ou extensão)
+
+A busca BFS tem como estratégia encontrar distâncias e caminhos mínimos de um grafo (levando em conta a menor quantidade de arestas até chegar no objetivo). 
+Esta busca é iniciada pela raiz, que é definida pelo usuário que executará a mesma. A busca BFS cria uma fila (FIFO), ou seja, o primeiro a entrar na lista é o primeiro a sair.
+O algoritmo BFS visita a raiz, depois todos os seus vizinhos e por final todos os vizinhos dos vizinhos, até chegar ao fim. Diferentemente da DFS, esta busca nunca é reiniciada.
+Da mesma forma que a DFS, caso o grafo seja representado por uma lista de adjacências, a BFS tem complexidade O(n + m). Sendo assim, o desempenho depende da quantidade de vértices e arestas que o grafo possui, ou seja, no pior caso ele é linear.
+
+------------------------------------
+c.Busca por custo uniforme (menor primeiro)
+
+A busca de custo uniforme expande sempre o nó que contém o menor custo na aresta.
+A estratégia desta busca é praticamente a mesma do que a de busca em largura (BFS), no entanto, ao invés de pegar o primeiro nó expandido que está na lista aguardando processamento, o nó que possui o menor custo é escolhido para ser expandido.
+Esta busca é iniciada pela raiz, que é definida pelo usuário que executará a mesma.
+O custo pode se tornar muito alto caso a árvore seje muito grande. Por exemplo, se a profundidade for 10 e a quantidade de nós for 10 exp(10), o tempo para encontrar o melhor caminho pode levar até 128 dias, se tornando totalmente inviável
+
+------------------------------------
+d.Busca em aprofundamento iterativo
+
+A busca em aprofundamento iterativo é parecida com a busca em profundidade porém sua estratégia difere em relação a limitação da profundidade.
+A estratégia da busca e de realizar um aprofundamento e etapas, ou seja, profundidade de busca vai aumentando até o limite estabelecido, repetindo em cada aprofundamento sua busca.
+A função de busca normalmente é iniciada pelo vértice 0 ou A, como na busca em profundidade.
+Diferente da busca em profundida, aqui se ganha em cosumo de memória ja que a busca se aprofunda até sua necessidade, ou seja, se eu encontrei meu objetivo não realizarei um novo aprofundamento, já em relação ao processamento, a situação é contrária, tendo em vista que a cada aprofundamento reinicia-se a busca. 
+
+------------------------------------
+e.Busca heurística gulosa (pelo melhor primeiro)
+
+A busca heuristica gulosa se assemelha a lógica da busca cega, porém ela utiliza a uma função heurística para decidir qual o nó deve ser expandido.
+Sua estratégia consiste em expandir os nós que se emcontram mais próximos do objetivo.
+O desempenho dela não é das melhores já que não é completa pois ela pode entrar em loop se não detectar a expanção de estados repitidos ou até mesmo desenvolver um caminho infinito.
+
+------------------------------------
+f.Busca A*
+
+A busca A* exige que seja definida o nó de origem para seu processamento, sendo ele o unico algoritmo ótimo que garante expandir menos nós, torna dele a tecnica de busca mais utiizada!
+Sua estratégia combina o custo do caminho com o valor da heurística, ou seja, o custo do caminho do nó inicial até o nó n somado ao valor da heurística do nó n até o o objetivo, que poderia ser exeplificado na distancia em linha reta no caso de distâncias espaciais.
+Seu desempenho se sobresae exatamente pelo fato de que o custo de tempo é exponencial com o comprimento da solução, porem com boas funções heurísticas diminuem significativamente esse custo. Já em relação ao custo de memória, a busca armazena apenas os nós expandidos.
+
