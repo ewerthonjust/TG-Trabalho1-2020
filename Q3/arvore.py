@@ -1,5 +1,7 @@
 import csv
 
+#@authors Diego Arndt & Ewerthon Ricardo Just
+
 def isEmpty(collection):
     return collection == None or collection.__len__() == 0
 

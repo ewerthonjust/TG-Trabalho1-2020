@@ -1,6 +1,8 @@
 import sys
 from arvore import lerArvore, isEmpty, inserirFronteira, No, printCaminho
 
+#@authors Diego Arndt & Ewerthon Ricardo Just
+
 nosLista = lerArvore()
 origem = input("Qual a sua cidade de partida?   ")
 destino = input("Qual a sua cidade destino?   ")
